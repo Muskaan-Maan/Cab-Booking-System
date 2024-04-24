@@ -1,0 +1,236 @@
+<body>
+
+  <nav class="navbar navbar-light bg-info">
+    <div class='container-fluid'>
+      <div class="navbar-header">
+        <a class="navbar-brand" style="color : black;  font-size: xx-large; font-weight: bold;"
+          routerLink="/dashboard">Cab
+          Booking System <img src="../../assets/images/taxi-solid.svg" height="40px" width="40px"></a>
+      </div>
+      <div class="d-flex">
+        <button routerLink="/login" class="btn btn-danger mx-2"><i class="fa-solid fa-right-from-bracket"></i>
+          Logout</button>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <div class="container" style="margin-top: 40px;">
+    <div class="row">
+      <div class="col-6">
+        <div class="card gmap">
+          <form>
+            <div class="mb-3">
+              <label for="origin-input" class="form-label" style="font-weight: bold;">ENTER PICKUP LOCATION</label>
+              <input id="origin-input" #originInput type="text" class="form-control"
+                placeholder="Enter an origin location">
+
+            </div>
+            <div class="mb-3" style="margin-top: 40px;">
+              <label for="destination-input" class="form-label" style="font-weight: bold;">ENTER DESTINATION
+                LOCATION</label>
+              <input id="destination-input" #destinationInput type="text" class="form-control"
+                placeholder="Enter a destination location">
+            </div>
+          </form>
+          <button class="btn  btn-dark" (click)="calculateAndDisplayRoute()" style="margin-top: 30px;">Display
+            Route</button>
+        </div>
+      </div>
+
+
+
+      <div class="col-6">
+        <div #map style="height: 400px"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <!--https://source.unsplash.com/1400x400/?cab-->
+
+
+
+
+  <div class="container mt-8">
+    <div class="heading">
+      <h2 class="mt-5" style="font-weight: bold;">Select a Ride!</h2>
+
+    </div>
+  </div>
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <img src="../../assets/images/auto.png" class="card-img-top" alt="..." height="200px" width="150px">
+          <div class="card-body">
+            <h5 class="card-title"> <button class="btn btn-primary col-6 offset-3" (click)="auto()">Auto Ride</button>
+            </h5>
+
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <img src="../../assets/images/cab1.png" class="card-img-top" alt="..." height="200px" width="150px">
+          <div class="card-body">
+            <button class="btn btn-primary col-6 offset-3" (click)="miniCab()">Mini Cab</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <img src="../../assets/images/cabxl.png" class="card-img-top" alt="..." height="200px" width="150px">
+          <div class="card-body">
+            <button class="btn btn-primary col-6 offset-3" (click)="cabXL()">Cab XL</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <img src="../../assets/images/cabPre.webp" class="card-img-top" alt="..." height="200px" width="150px">
+          <div class="card-body">
+            <button class="btn btn-primary col-8 offset-2" (click)="cabPremium()">Cab Premium</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive" *ngIf="showRideDetail" style="margin-bottom: 30px;">
+
+
+      <table class="table table-striped table-hover p-3 text-center">
+        <thead class="table-dark">
+          <tr>
+          <th>Detail Name</th>
+          <th>Value</th>
+        </tr>
+        </thead>
+        <tbody class="table-info">
+          <tr>
+            <td>Pick-Up Location</td>
+            <td>{{origin}}</td>
+          </tr>
+          <tr>
+            <td>Drop-Off Location</td>
+            <td>{{destination}}</td>
+          </tr>
+          <tr>
+            <td>Distance</td>
+            <td>{{distanceValue.toFixed(2)}}km</td>
+          </tr>
+          <tr>
+            <td>Estimated Fare</td>
+            <td>₹{{price}}</td>
+          </tr>
+
+          <tr>
+            <td><button class="btn btn-primary btn-lg btn-block mr-2" type='button' data-toggle="modal"
+              data-target="#myModal">
+              Confirm Ride
+            </button></td>
+            <td> <button class='btn btn-danger btn-lg btn-block ml-2' type='button' routerLink="/dashboard">Cancel</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+
+
+  <footer class="bd-footer py-4 mt-5 bg-light">
+    <div class="container py-4">
+        <div class="row">
+          <a class="navbar-brand" href="#">
+            <img src="../../assets/images/taxi-solid.svg" alt="" width="50" height="44" class="d-inline-block align-text-top">
+            <span>Cab Booking Service</span>
+          </a>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                <h5>Customer Support</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                      <a href="tel:+01273123456">
+                        <img src="../../assets/images/phone.png" alt="" width="42" height="34" class="d-inline-block align-text-top">
+                        91-8947532786</a>
+                    </li>
+                    <li class="mb-2">
+                      <a href="mailto:shashikantkr123@gmail.com">
+                        <img src="../../assets/images/mail.jpg" alt="" width="40" height="34" class="d-inline-block align-text-top">
+                        sha@gmail.com</a>
+                    </li>
+                    <!-- <li class="mb-2">
+                      <a href="http://localhost:4200/">Copyright cabooking.dxc2023</a>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                <h5>Categories</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="">Cab Booking</a>
+                    </li>
+                    <li class="mb-2">
+                      <a href="">User Registeration</a>
+                  </li>
+                  <li class="mb-2">
+                    <a href="">Cab Details</a>
+                </li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                <h5>Link</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="http://localhost:4200/">Home</a>
+                    </li>
+                    <li class="mb-2">
+                      <a href="http://localhost:4200/">Registration</a>
+                  </li>
+                  <li class="mb-2">
+                    <a href="http://localhost:4200/">DashBoard</a>
+                </li>
+                <li class="mb-2">
+                  <a href="http://localhost:4200/">Booking</a>
+              </li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                <h5>Product</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="">Mini Cab</a>
+                    </li>
+                </ul>
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                      <a href="">Cab XL</a>
+                  </li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                    <a href="">Cab Premium</a>
+                </li>
+            </ul>
+            </div>
+            
+        </div>
+    </div>
+    <footer style="text-align: center; text-decoration-line: none; color: black;"><a href="http://localhost:4200/">Copyright.cabooking.dxc@2023</a></footer>
+</footer>
+  
+
+ 
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMLvDTm0_E_zGryC0lImgbWBWRwnP1CKM&libraries=places"></script>
+
+
+</body>

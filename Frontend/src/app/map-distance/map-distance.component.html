@@ -1,0 +1,45 @@
+<p>map-distance works!</p>
+
+
+<div>
+  <label>Ride Type:</label>
+  <select id="rideType">
+    <option value="">Select</option>
+    <option value="Auto">Auto</option>
+    <option value="Mini Cab">Mini Cab</option>
+    <option value="Cab XL">Cab XL</option>
+    <option value="Cab Premium">Cab Premium</option>
+  </select>
+</div>
+
+
+
+<div>
+    <label for="origin-input">Origin:</label>
+    <input id="origin-input" #originInput type="text" placeholder="Enter an origin location">
+  
+    <label for="destination-input">Destination:</label>
+    <input id="destination-input" #destinationInput type="text" placeholder="Enter a destination location">
+  
+   <!-- <button (click)="calculateAndDisplayRoute()">Calculate Distance</button>-->
+    <button (click)="calculateAndDisplayRoute()">Calculate Fare</button>
+    <br>
+
+    <div *ngIf="distanceValue">Distance: {{distanceValue}}</div>
+  
+  
+    <div #map style="height: 400px"></div>
+  </div>
+  
+  <!--<div *ngIf = "price">
+
+    <p>Price: {{ price}}</p>
+    </div>-->
+
+    <label for="price">Price:</label>
+    <span id="price">{{ price }}</span>
+ 
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMLvDTm0_E_zGryC0lImgbWBWRwnP1CKM&libraries=places"></script>

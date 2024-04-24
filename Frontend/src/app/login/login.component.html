@@ -1,0 +1,62 @@
+
+
+<nav class="navbar navbar-light bg-info">
+    <div class='container-fluid'>
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="" style="color : rgb(10, 10, 10); font-size: xx-large; font-weight: bold;">Cab Booking System <img src="../../assets/images/taxi-solid.svg" height="40px" width="40px"></a>
+      </div>
+
+      <li class="nav-item dropdown d-flex">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-lock"></i> Login
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/admin-l">Admin</a></li>
+          <li><a class="dropdown-item" routerLink="/driver-login">Driver</a></li>
+        
+        </ul>
+      </li>
+
+    </div>
+  </nav>
+
+<div class="background-image">
+
+    <div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="text-center">
+                    <h1 style="color: white">Login</h1>
+                    
+                </div>
+                <form [formGroup] = "loginForm" (ngSubmit) = "login()">
+                  <small class="text-danger">{{msg}}</small>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email address</label>
+                          <input type="email" formControlName = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" [(ngModel)]="user.email">
+                          <span class = "text-danger" *ngIf = "loginForm.controls['email'].dirty && loginForm.hasError('required','email')">*Email Id is required</span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input type="password" formControlName = "password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="user.password">
+                          <span class = "text-danger" *ngIf = "loginForm.controls['password'].dirty && loginForm.hasError('required','password')">*Password is required</span>
+                        </div>
+                        
+                        <button [disabled] = "!loginForm.valid" type="submit" class="btn btn-info col-6 offset-3 mb-3 mt-3">Login</button>
+                
+                </form>
+                <a routerLink="/register" style="text-align: center; color: whitesmoke; text-decoration: none;">New User? Register Here!</a>
+            </div>
+        </div>
+        <div class="col">
+          <img src="../../assets/images/book.png" height="420px" width="600px" style="margin-top: 70px;">
+        </div>
+    </div>
+</div>
+</div>
+
+
+      
+
+

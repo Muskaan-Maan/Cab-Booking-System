@@ -1,0 +1,51 @@
+<nav class="navbar navbar-light bg-info">
+  <div class='container-fluid'>
+    <div class="navbar-header">
+      <a class="navbar-brand" style="color : rgb(10, 10, 10); font-size: xx-large; font-weight: bold;" routerLink="/login">Cab Booking System <img src="../../assets/images/taxi-solid.svg" height="40px" width="40px"></a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="background-image">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1 style="color:white">Register</h1>
+                    
+                </div>
+                <form [formGroup] = "registerForm" (ngSubmit) = "register()">
+                  <small class="text-danger">{{msg}}</small>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Full Name</label>
+                            <input formControlName = "fullname" type="text" class="form-control" id="exampleInputPassword1" placeholder = "Full Name" [(ngModel)]="user.userName">
+                            <span class = "text-danger" *ngIf = "registerForm.controls['fullname'].dirty && registerForm.hasError('required','fullname')">*Full Name is required</span>
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Mobile No.</label>
+                            <input formControlName = "mobile" type="tel" class="form-control" id="exampleInputPassword1" minlength = "10" maxlength = "10" placeholder = "Mobile No." [(ngModel)]="user.mobileNumber">
+                            <span class = "text-danger" *ngIf = "registerForm.controls['mobile'].dirty && registerForm.hasError('required','mobile')">*Mobile No. is required</span>  
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email address</label>
+                          <input formControlName = "email" type="email" class="form-control" id="exampleInputEmail1" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" aria-describedby="emailHelp" placeholder = "Enter Email" [(ngModel)]="user.email">
+                          <span class = "text-danger" *ngIf = "registerForm.controls['email'].dirty && registerForm.hasError('required','email')">*Email Id is required</span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input formControlName = "password" type="password" class="form-control" id="exampleInputPassword1" placeholder = "Password" [(ngModel)]="user.password">
+                          <span class = "text-danger" *ngIf = "registerForm.controls['password'].dirty && registerForm.hasError('required','password')">*Password is required</span>
+                        </div>
+                        
+                        <button [disabled] = "!registerForm.valid" type="submit" class="btn btn-info col-6 offset-3 mb-3 mt-3">Register</button>
+                     
+                </form>
+                <a routerLink="/login" style="text-align: center; color: whitesmoke; text-decoration: none;">Already Registered? Click to Login!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

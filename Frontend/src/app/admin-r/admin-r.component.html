@@ -1,0 +1,48 @@
+
+<nav class="navbar navbar-light bg-info">
+    <div class='container-fluid'>
+      <div class="navbar-header">
+        <a class="navbar-brand" style="color : rgb(10, 10, 10); font-size: xx-large; font-weight: bold;" routerLink="/admin-l">Cab Booking System <img src="../../assets/images/taxi-solid.svg" height="40px" width="40px"></a>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="background-image"></div>
+  
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="card">
+                  <div class="text-center">
+                      <h1 style="color:white">Admin Registration</h1>
+                      
+                  </div>
+                  <form [formGroup] = "registerForm" (ngSubmit) = "register()">
+                    <small class="text-danger">{{msg}}</small>
+                          <div class="mb-3 mt-2">
+                              <label for="exampleInputPassword1" class="form-label">Full Name</label>
+                              <input formControlName = "fullname" type="text" class="form-control" id="exampleInputPassword1" placeholder = "Full Name" [(ngModel)]="admin.name">
+                              <span class = "text-danger" *ngIf = "registerForm.controls['fullname'].dirty && registerForm.hasError('required','fullname')">*Full Name is required</span>
+                            </div>
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input formControlName = "email" type="email" class="form-control" id="exampleInputEmail1" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" aria-describedby="emailHelp" placeholder = "Enter Email" [(ngModel)]="admin.email">
+                            <span class = "text-danger" *ngIf = "registerForm.controls['email'].dirty && registerForm.hasError('required','email')">*Email Id is required</span>
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input formControlName = "password" type="password" class="form-control" id="exampleInputPassword1" placeholder = "Password" [(ngModel)]="admin.password">
+                            <span class = "text-danger" *ngIf = "registerForm.controls['password'].dirty && registerForm.hasError('required','password')">*Password is required</span>
+                          </div>
+                          
+                          <button [disabled] = "!registerForm.valid" type="submit" class="btn btn-info col-6 offset-3 mb-3 mt-2">Register</button>
+                       
+                  </form>
+                  <a routerLink="/admin-l" style="text-align: center; color: whitesmoke; text-decoration: none;">Already Registered? Click to Login!</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  
+
